@@ -5,9 +5,8 @@ A template repo for a server side rendered node.js web app using express and rea
 Additional aspects:
   - Bulma for css+sass but easily replaceable 
   - Babel for nextgen js in the browser, typescript for type checking only (no emit/compile) 
-  - JSX composable views
-  - Webpack for client side js and css
-  - Inner loop including unit tests (TODO)
+  - Webpack for bundling client side js and css
+  - Dev inner loop including watch for changes and unit tests (TODO)
   - E2E tests (TODO)
   - Containers and K8s deploys (TODO)
 
@@ -22,10 +21,12 @@ npm install
 $ npm run build
 ```
 
-# Local Start
+# Local Dev
+
+Watches for file changes and restarts
 
 ```bash
-$ npm start
+$ npm run dev
 ```
 
  # Resources
