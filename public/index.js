@@ -2,8 +2,6 @@
 // https://bulma.io/documentation/customize/with-webpack/
 require('./styles.scss');
 
+const ele = document.getElementById("subtitle")
+ele.innerHTML = "Hello from javascript"
 
-const element = document.createElement('div');
-element.innerHTML = "Hello javascript"
-  
-document.body.appendChild(element);

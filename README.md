@@ -2,7 +2,9 @@
 
 A template repo for a server side rendered node.js web app using express and react for views
 
-Additional aspects:  
+Additional aspects:
+  - Bulma for css+sass but easily replaceable 
+  - Babel for nextgen js in the browser 
   - JSX composable views
   - Webpack for client side js and css
   - Inner loop including unit tests (TODO)
