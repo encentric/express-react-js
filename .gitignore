@@ -1,1 +1,6 @@
+
+# node
 node_modules
+
+# webpacked client
+public/dist

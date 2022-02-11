@@ -5,6 +5,7 @@ function IndexView(props) {
   return (
     <DefaultLayout title={props.title}>
       <div>Hello {props.name}</div>
+      <script src="bundle.js"></script>
     </DefaultLayout>
   );
 }

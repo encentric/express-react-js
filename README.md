@@ -4,19 +4,30 @@ A template repo for a server side rendered node.js web app using express and rea
 
 Additional aspects:  
   - JSX composable views
-  - Produces containers (TODO)
+  - Webpack for client side js and css
   - Inner loop including unit tests (TODO)
   - E2E tests (TODO)
-  - K8s deploys (TODO)
+  - Containers and K8s deploys (TODO)
 
- # Local Start
+ # Build
 
 once:
 ```bash
 npm install
 ```
 
- ```bash
+```bash
+$ npm run build
+```
+
+# Local Start
+
+```bash
 $ npm start
- ```
- 
+```
+
+ # Resources
+
+[express](https://expressjs.com/)  
+[bulma and webpack](https://bulma.io/documentation/customize/with-webpack/)  
+
