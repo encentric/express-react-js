@@ -10,6 +10,10 @@ Additional aspects:
   - E2E tests (TODO)
   - Containers and K8s deploys (TODO)
 
+# Node.js
+
+The repo is using node 16 which is currently latest LTS.  
+
  # Build
 
 once:
@@ -19,6 +23,9 @@ npm install
 
 ```bash
 $ npm run build
+
+# or what npm calls
+$ ./dev build
 ```
 
 # Local Dev
@@ -27,6 +34,9 @@ Watches for file changes and restarts
 
 ```bash
 $ npm run dev
+
+# or what npm calls
+$ ./dev dev
 ```
 
  # Resources

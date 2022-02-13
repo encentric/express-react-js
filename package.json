@@ -3,9 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "build": "webpack --mode development",
-    "check": "tsc",
-    "dev": "webpack --watch --mode development"
+    "build": "./dev.sh build",
+    "dev": "./dev.sh dev"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
