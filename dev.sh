@@ -7,6 +7,7 @@ APP_NAME=$(basename "$PWD")
 
 updateVersion() {
     banner "updating version ..."
+    docker run --rm -v "${SCRIPTPATH}:/repo" gittools/gitversion:5.6.6 /repo
     docker run --rm -v "${SCRIPTPATH}:/repo" gittools/gitversion:5.6.6 /repo > .version
     cat .version
 }
