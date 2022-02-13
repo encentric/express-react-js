@@ -6,7 +6,9 @@ SCRIPTPATH="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
 APP_NAME=$(basename "$PWD")
 
 updateVersion() {
+    banner "updating version ..."
     docker run --rm -v "${SCRIPTPATH}:/repo" gittools/gitversion:5.6.6 /repo > .version
+    cat .version
 }
 
 banner() {
@@ -26,19 +28,19 @@ dev() {
 # build a production container
 #
 build() {
-    banner Building ...
+    banner "Building ..."
 
     npm --version
 
-    banner Install ...
+    banner "Install ..."
     npm ci
 
     # compile time check code for correctness.  does not emit compiled code
-    banner Compile checks ...
+    banner "Compile checks ..."
     npx tsc 
 
     # pack and transpile client side js code
-    banner Webpack ...
+    banner "Webpack ..."
     npx webpack --mode production
 }
 
@@ -66,7 +68,7 @@ function stopSvc {
 }
 
 run() {
-    banner stopping ...
+    banner "stopping ..."
     stopSvc ${APP_NAME}
 
     banner run ...
@@ -74,12 +76,12 @@ run() {
 }
 
 stop() {
-    banner stopping ...
+    banner "stopping ..."
     stopSvc ${APP_NAME}
 }
 
 e2e() {
-    banner e2e...
+    banner "e2e..."
     run
 
     sleep 2
