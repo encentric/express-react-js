@@ -3,8 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "build": "./dev.sh build",
-    "dev": "./dev.sh dev"
+    "build": "./dev build",
+    "image": "./dev image",
+    "start": "./dev dev"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",

@@ -14,29 +14,40 @@ Additional aspects:
 
 The repo is using node 16 which is currently latest LTS.  
 
- # Build
-
-once:
-```bash
-npm install
-```
-
-```bash
-$ npm run build
-
-# or what npm calls
-$ ./dev build
-```
-
 # Local Dev
 
 Watches for file changes and restarts
 
+once:
 ```bash
-$ npm run dev
+$ npm install
+```
 
-# or what npm calls
-$ ./dev dev
+```bash
+$ npm start
+```
+
+# Production Container
+
+builds the container image
+
+```bash
+$ ./dev image
+
+# or, npm run image
+```
+
+```bash
+$ docker images | grep express-react-js
+express-react-js    0.1.0-main0009 91f7cc965c9f   39 seconds ago   130MB
+```
+
+note that if you want to build locally (debug etc) what's happening in the container build you can run:
+
+```bash
+$ ./dev build
+
+# or, npm run build
 ```
 
  # Resources
