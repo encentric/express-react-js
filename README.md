@@ -8,7 +8,7 @@ Additional aspects:
   - Webpack for bundling client side js and css
   - Dev inner loop including watch for changes and unit tests (TODO)
   - E2E tests (TODO)
-  - Containers and K8s deploys (TODO)
+  - Containers, docker multi-stage build and K8s deploys (TODO)
 
 # Node.js
 
@@ -37,9 +37,13 @@ $ ./dev image
 # or, npm run image
 ```
 
+Run and stop container
 ```bash
-$ docker images | grep express-react-js
-express-react-js    0.1.0-main0009 91f7cc965c9f   39 seconds ago   130MB
+$ ./dev run
+
+...
+
+$ ./dev stop
 ```
 
 note that if you want to build locally (debug etc) what's happening in the container build you can run:
@@ -48,6 +52,30 @@ note that if you want to build locally (debug etc) what's happening in the conta
 $ ./dev build
 
 # or, npm run build
+```
+
+# e2e test container
+
+```bash
+$ ./dev e2e
+
+e2e...
+----------------------
+
+stopping
+----------------------
+
+run
+----------------------
+d0f6fb416a63feb483fe46d76ebc377c31f8b78f098114dc7c81386949d0fe15
+
+tests
+----------------------
+test home page
+            <h1 class="title">Hello World</h1>
+
+stopping
+----------------------
 ```
 
  # Resources

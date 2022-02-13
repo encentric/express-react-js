@@ -10,7 +10,7 @@ updateVersion() {
 }
 
 banner() {
-    echo ----------------------
+    echo 
     echo $1
     echo ----------------------
 }
@@ -55,7 +55,42 @@ image() {
 
     echo Building container ${TAG}
 
-    docker build --progress=plain -t ${TAG} .    
+    docker build --progress=plain -t ${TAG} -t ${APP_NAME}:latest .    
+
+    docker images | grep ${APP_NAME}
 }
+
+function stopSvc {
+    docker stop $1 > /dev/null 2>&1 || true
+    docker rm $1 > /dev/null 2>&1 || true    
+}
+
+run() {
+    banner stopping ...
+    stopSvc ${APP_NAME}
+
+    banner run ...
+    docker run -d --rm -p 3000:3000 --name ${APP_NAME}  ${APP_NAME}:latest
+}
+
+stop() {
+    banner stopping ...
+    stopSvc ${APP_NAME}
+}
+
+e2e() {
+    banner e2e...
+    run
+
+    sleep 2
+    
+    banner tests
+
+    echo test home page
+    curl -s -X GET "http://localhost:3000" | grep "Hello World"
+
+    stop
+}
+
 
 "$@"
