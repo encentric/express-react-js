@@ -100,5 +100,6 @@
   },
   "exclude": [
     "./public",
+    "./webpack.config.js"
   ]    
 }

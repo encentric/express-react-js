@@ -4,3 +4,6 @@ node_modules
 
 # webpacked client
 public/dist
+
+# generated git version
+.version
