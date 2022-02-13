@@ -6,9 +6,9 @@ Additional aspects:
   - Bulma for css+sass but easily replaceable 
   - Babel for nextgen js in the browser, typescript for type checking only (no emit/compile) 
   - Webpack for bundling client side js and css
-  - Dev inner loop including watch for changes and unit tests (TODO)
-  - E2E tests (TODO)
-  - Containers, docker multi-stage build and K8s deploys (TODO)
+  - Dev inner loop including watch for changes
+  - Containers, docker multi-stage build and K8s deploys
+  - E2E tests  
 
 # Node.js
 
