@@ -90,6 +90,7 @@ e2e() {
     banner tests
 
     echo test home page
+    curl -s -X GET "http://localhost:3000"
     curl -s -X GET "http://localhost:3000" | grep "Hello World"
 
     stop
