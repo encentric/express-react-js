@@ -85,7 +85,8 @@ e2e() {
     banner "e2e..."
     run
 
-    sleep 2
+    # TODO fragile. do connect loop
+    sleep 10
     
     banner tests
 
