@@ -85,7 +85,7 @@ e2e() {
     banner "e2e..."
     run
 
-    # TODO fragile. do connect loop
+    # TODO fragile. do connect loop or use a real web testing fx (webdriver.io etc)
     sleep 10
     
     banner tests
