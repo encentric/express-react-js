@@ -51,7 +51,7 @@ image() {
 
     updateVersion
 
-    GIT_VER=$(cat .version | jq -r '.MajorMinorPatch')-$(cat .version | jq -r '.BranchName')$(cat .version | jq -r '.BuildMetaDataPadded')
+    GIT_VER=$(cat .version | jq -r '.MajorMinorPatch')-$(cat .version | jq -r '.EscapedBranchName')$(cat .version | jq -r '.BuildMetaDataPadded')
 
     VER=${GIT_VER:-latest}
     TAG="${APP_NAME}:${VER}"

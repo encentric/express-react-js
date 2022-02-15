@@ -4,7 +4,6 @@
 FROM node:16 AS builder
 WORKDIR /usr/app
 COPY . .
-RUN ls -la
 RUN chmod +x ./dev.sh
 RUN ./dev.sh build 
 # strip all the dev dependencies needed by build in the builder container
