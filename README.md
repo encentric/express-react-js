@@ -1,5 +1,7 @@
 # Express React JS
 
+[![ci](https://github.com/encentric/express-react-js/actions/workflows/ci.yaml/badge.svg)](https://github.com/encentric/express-react-js/actions/workflows/ci.yaml)
+
 A template repo for a server side rendered node.js web app using express and react for views
 
 Additional aspects:
