@@ -5,7 +5,7 @@
 A template repo for a server side rendered node.js web app using express and react for views
 
 Additional aspects:
-  - Bulma for css+sass but easily replaceable 
+  - tailwinds for css+sass but easily replaceable 
   - Babel for nextgen js in the browser, typescript for type checking only (no emit/compile) 
   - Webpack for bundling client side js and css
   - Dev inner loop including watch for changes
@@ -82,7 +82,14 @@ stopping
 
  # Resources
 
-[express](https://expressjs.com/)  
-[bulma and webpack](https://bulma.io/documentation/customize/with-webpack/)   
+[express](https://expressjs.com/)   
+[babel+typescript](https://iamturns.com/typescript-babel/)     
 [typescript for checking only (no emit)](https://www.sitepen.com/blog/progressively-adopting-typescript-in-an-application)  
+
+[tailwinds css + webpack](https://tailwindcss.com/docs/installation/using-postcss)
+[tailwinds css + webpack](https://dev.to/ynwd/how-to-integrate-tailwind-react-and-webpack-2gdf)  
+[tailwind css + webpack](https://gsc13.medium.com/how-to-configure-webpack-5-to-work-with-tailwindcss-and-postcss-905f335aac2)  
+https://stackoverflow.com/questions/55606865/combining-tailwind-css-with-sass-using-webpack
+[tailwind hero+parallax](https://daily-dev-tips.com/posts/tailwind-css-parallax-effect/)  
+[postcss](https://github.com/postcss/postcss#webpack) and [this](https://stackoverflow.com/a/55607208/775184)  
 

@@ -4,16 +4,16 @@ var DefaultLayout = require('./layouts/default');
 function IndexView(props) {
   return (
     <DefaultLayout title={props.title}>
-        <section className="section">
-            <div className="container">
-            <h1 className="title">
-                Hello {props.name}
+        <div className="py-20" style={{background: 'linear-gradient(90deg, #667eea 0%, #764ba2 100%)'}}>
+          <div className="container mx-auto px-6">
+            <h1 className="text-3xl font-bold underline">
+              Hello {props.name}
             </h1>
             <p className="subtitle" id="subtitle">
                 Subtitle here
             </p>
-            </div>
-        </section> 
+          </div>
+        </div> 
         <script src="bundle.js"></script>
     </DefaultLayout>
   );
