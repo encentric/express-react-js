@@ -7,3 +7,7 @@ public/dist
 
 # generated git version
 .version
+.version.info
+
+# deps
+deps
