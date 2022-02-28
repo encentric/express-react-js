@@ -14,4 +14,4 @@ resources:
 
 images:
 - name: express-react-js
-  newTag: 0.1.0-main0024
+  newTag: 0.1.0-deploy0025

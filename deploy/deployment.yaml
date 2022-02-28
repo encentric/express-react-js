@@ -10,7 +10,7 @@ spec:
       containers:
       - name: express-react-js
         image: express-react-js:latest
-        workingDir: "/bin"
+        workingDir: "/usr/app"
         ports:
         - containerPort: 3000
         resources:
