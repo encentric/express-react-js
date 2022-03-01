@@ -69,13 +69,17 @@ $ ./dev e2e
 
 ```bash
 $ ./dev deploy dev -y
-
-Deploying to dev
-----------------------
-...
 ```
 
-## Dev mode
+That will create a new container image labeled with the git branch/commit.
+
+If you want to redeploy the same commit (useful for dev scenarios between commits) you can run:
+
+```bash
+$ ./dev update dev -y
+```
+
+## Dev mode deploy
 
 Before running deploy, you can start the minikube cluster with  
 

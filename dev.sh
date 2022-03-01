@@ -5,7 +5,7 @@ SCRIPTPATH="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
 # app name is the dir name
 APP_NAME=$(basename "$PWD")
 OS=$(uname -s)
-
+ 
 #----------------------------------------------------------------------------------
 # Config
 #----------------------------------------------------------------------------------
@@ -20,14 +20,19 @@ KUBE_DISK_SIZE='10GB'
 KUBE_MEMORY='2GB'
 KUBE_DRIVER='virtualbox'
 
+
 #----------------------------------------------------------------------------------
 # Util
 #----------------------------------------------------------------------------------
 
 banner() {
     echo 
-    echo $1
-    echo ----------------------
+    echo "🟧 ${1}"
+}
+
+section() {
+    echo 
+    echo "👉 ${1}"
 }
 
 ensureTool() {
@@ -52,19 +57,19 @@ dev() {
 #----------------------------------------------------------------------------------
 
 build() {
-    banner "Building ..."
+    section "Building ..."
 
-    npm --version
+    echo "npm: $(npm --version)"
 
-    banner "Install ..."
+    section "Install ..."
     npm ci
 
     # compile time check code for correctness.  does not emit compiled code
-    banner "Compile checks ..."
+    section "Compile checks ..."
     npx tsc 
 
     # pack and transpile client side js code
-    banner "Webpack ..."
+    section "Webpack ..."
     npx webpack --mode production
 }
 
@@ -97,6 +102,8 @@ image() {
     docker build --progress=plain -t ${TAG} -t ${APP_NAME}:latest .    
 
     docker images | grep ${APP_NAME}
+
+    echo "✅ Built ${TAG}"
 }
 
 #----------------------------------------------------------------------------------
@@ -134,6 +141,7 @@ e2e() {
     curl -X GET "http://localhost:3000"
     curl -s -X GET "http://localhost:3000" | grep "Hello World"
 
+    echo "✅ Passed"
     stop
 }
 
@@ -175,13 +183,11 @@ kubeEnv() {
     echo "env: ${MINIKUBE_ACTIVE_DOCKERD}"
 }
 
-# ./dev deploy {targetEnv}
-# targetEnv = dev, staging, prod
-deploy() {
+preDeploy() {
     targetEnv=$1
 
     case $targetEnv in
-        dev|staging|prod) banner "Deploying to ${targetEnv}";;
+        dev|staging|prod) echo "environment: ${targetEnv}";;
         *)  echo "Invalid env.  must be dev, staging or prod" && exit 1;;
     esac
 
@@ -191,7 +197,14 @@ deploy() {
         read -p "Press enter to continue.  ctlc to exit."
     fi
 
-    [ "${targetEnv}" == "dev" ] && kubeEnv
+    [ "${targetEnv}" == "dev" ] && kubeEnv    
+}
+
+# ./dev deploy {targetEnv}
+# targetEnv = dev, staging, prod
+deploy() {
+    banner "Deploying"
+    preDeploy "$@"
 
     image
 
@@ -218,23 +231,27 @@ deploy() {
 
     # [ "${targetEnv}" == "dev" ]
     URL=$(getUrl ${targetEnv})
-
     healthcheck ${URL}
 
+    echo "✅ Deployed ${URL}"
     open ${URL}
 }
 
-devupdate() {
+update() {
     banner "Updating Deployment"
+    preDeploy "$@"    
 
-    kubeEnv
     image 
     kubectl rollout restart deploy ${APP_NAME}
 
     # wait for the deployment
     kubectl wait --for=condition=available --timeout=60s deployment/${APP_NAME}
 
-    healthcheck
+    URL=$(getUrl ${targetEnv})
+    healthcheck ${URL}
+
+    echo "✅ Updated ${URL}"
+    open ${URL}
 }
 
 setupDevCluster() {
