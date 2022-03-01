@@ -75,6 +75,19 @@ Deploying to dev
 ...
 ```
 
+## Dev mode
+
+Before running deploy, you can start the minikube cluster with  
+
+```bash
+$ ./dev setupDevCluster
+```
+
+And then stop it later with  
+
+```bash
+$ ./dev stopDevCluster
+```
 
 
  # Resources
