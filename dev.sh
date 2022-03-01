@@ -6,6 +6,24 @@ SCRIPTPATH="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
 APP_NAME=$(basename "$PWD")
 OS=$(uname -s)
 
+#----------------------------------------------------------------------------------
+# Config
+#----------------------------------------------------------------------------------
+
+URL_STAGING="http://someurl.com/path"
+URL_PROD="http://someurl.com/path"
+
+# dev minikube settings
+KUBE_CLUSTER_NAME='local-dev'
+KUBE_VERSION='v1.23.0'
+KUBE_DISK_SIZE='10GB'
+KUBE_MEMORY='2GB'
+KUBE_DRIVER='virtualbox'
+
+#----------------------------------------------------------------------------------
+# Util
+#----------------------------------------------------------------------------------
+
 banner() {
     echo 
     echo $1
@@ -133,6 +151,16 @@ healthcheck() {
     curl -fLs GET "${URL}" > /dev/null
 }
 
+getUrl() {
+    mode=${1}
+
+    case $mode in
+        dev) echo $(minikube -p $KUBE_CLUSTER_NAME service ${APP_NAME} --url);;
+        staging) echo ${URL_STAGING};;
+        prod) echo ${URL_PROD};;
+    esac 
+}
+
 kubeEnv() {
     echo "Setting up minikube environment"
     which brew >/dev/null || ( echo "brew required" && exit 1 )
@@ -189,9 +217,11 @@ deploy() {
     kubectl wait --for=condition=available --timeout=60s deployment/${APP_NAME}
 
     # [ "${targetEnv}" == "dev" ]
-    URL=$(minikube -p $KUBE_CLUSTER_NAME service ${APP_NAME} --url)
+    URL=$(getUrl ${targetEnv})
 
     healthcheck ${URL}
+
+    open ${URL}
 }
 
 devupdate() {
@@ -206,12 +236,6 @@ devupdate() {
 
     healthcheck
 }
-
-KUBE_CLUSTER_NAME='local-dev'
-KUBE_VERSION='v1.23.0'
-KUBE_DISK_SIZE='10GB'
-KUBE_MEMORY='2GB'
-KUBE_DRIVER='virtualbox'
 
 setupDevCluster() {
     ensureTool minikube 
