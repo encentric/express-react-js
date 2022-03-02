@@ -2,23 +2,24 @@
 
 [![ci](https://github.com/encentric/express-react-js/actions/workflows/ci.yaml/badge.svg)](https://github.com/encentric/express-react-js/actions/workflows/ci.yaml)
 
-A template repo for a server side rendered node.js web app using express and react for views
+A template repo for a server side rendered `node.js` web app using `express` and `react` for views
 
 Additional aspects:
-  - tailwinds for css+sass but easily replaceable 
-  - Babel for nextgen js in the browser, typescript for type checking only (no emit/compile) 
-  - Webpack for bundling client side js and css
+  - `tailwinds` for css+sass but easily replaceable 
+  - `Babel` for nextgen js in the browser, `typescript` for type checking only (no emit/compile) 
+  - `Webpack` for bundling client side js and css
   - Dev inner loop including watch for changes
-  - Containers, docker multi-stage build and K8s deploys
-  - E2E tests  
-
+  - E2E tests   
+  - `GitHub actions` for CI, CD (deploy) with approvals
+  - `Containers`, `docker` multi-stage build and `K8s` deploys
+ 
 # Node.js
 
 The repo is using node 16 which is currently latest LTS.  
 
 # Local Dev
 
-Watches for file changes and restarts
+Starts the server and restarts on file changes  
 
 once:
 ```bash
@@ -29,20 +30,17 @@ $ npm install
 $ npm start
 ```
 
-# Production Container
+# Container
 
 builds the container image
 
 ```bash
 $ ./dev image
-
-# or, npm run image
 ```
 
 Run and stop container
 ```bash
 $ ./dev run
-
 ...
 
 $ ./dev stop
@@ -52,33 +50,49 @@ note that if you want to build locally (debug etc) what's happening in the conta
 
 ```bash
 $ ./dev build
-
-# or, npm run build
 ```
 
-# e2e test container
+# Test
+
+Spin up the container and test outside / in.  
 
 ```bash
 $ ./dev e2e
-
-e2e...
-----------------------
-
-stopping
-----------------------
-
-run
-----------------------
-d0f6fb416a63feb483fe46d76ebc377c31f8b78f098114dc7c81386949d0fe15
-
-tests
-----------------------
-test home page
-            <h1 class="title">Hello World</h1>
-
-stopping
-----------------------
 ```
+
+# Deploy
+
+`./dev deploy {targetEnv} [-y]`  
+
+`targetEnv`: dev, staging, prod  
+`-y`: avoids prompt to continue  
+
+```bash
+$ ./dev deploy dev -y
+```
+
+That will create a new container image labeled with the git branch/commit.
+
+If you want to redeploy the same commit (useful for dev scenarios between commits) you can run:
+
+```bash
+$ ./dev update dev -y
+```
+
+## Dev mode deploy
+
+Before running deploy, you can start the minikube cluster with  
+
+```bash
+$ ./dev setupDevCluster
+```
+
+And then stop it later with  
+
+```bash
+$ ./dev stopDevCluster
+```
+
 
  # Resources
 
