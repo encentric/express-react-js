@@ -111,15 +111,15 @@ function stopSvc {
 }
 
 run() {
-    banner "stopping ..."
+    section "stopping ..."
     stopSvc ${APP_NAME}
 
-    banner run ...
+    section run ...
     docker run -d --rm -p 3000:3000 --name ${APP_NAME}  ${APP_NAME}:latest
 }
 
 stop() {
-    banner "stopping ..."
+    section "stopping ..."
     stopSvc ${APP_NAME}
 }
 
@@ -133,7 +133,6 @@ e2e() {
     banner tests
 
     echo test home page
-    curl -X GET "http://localhost:3000"
     curl -s -X GET "http://localhost:3000" | grep "Hello World"
 
     echo "✅ Passed"
