@@ -76,12 +76,7 @@ build() {
 updateVersion() {
     echo "updating version ..."
 
-    ensureTool gitversion
-
-    gitversion > .version.info
-
-    GIT_VER=$(cat .version.info | jq -r '.MajorMinorPatch')-$(cat .version.info | jq -r '.EscapedBranchName')$(cat .version.info | jq -r '.BuildMetaDataPadded')
-    echo $GIT_VER > .version
+    echo "$(cat .version.info)-$(git branch --show-current)-$(git rev-list HEAD --count)" > .version
     cat .version
 }
 
