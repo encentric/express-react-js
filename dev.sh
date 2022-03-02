@@ -128,9 +128,9 @@ e2e() {
     run
 
     # TODO fragile. do connect loop or use a real web testing fx (webdriver.io etc)
-    sleep 10
+    sleep 20
     
-    banner tests
+    section tests
 
     echo test home page
     curl -s -X GET "http://localhost:3000" | grep "Hello World"
